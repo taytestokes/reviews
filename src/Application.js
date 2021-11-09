@@ -1,24 +1,29 @@
 import React from 'react'
 
-// import { getReviews } from './utils/PodiumAPI'
+import { getReviews } from './utils/PodiumAPI'
 
 import { Layout } from './components/Layout'
+import { ReviewCard } from './components/ReviewCard'
 
 export const Application = () => {
-  // const [reviews, setReviews] = React.useState([])
+  // const [isLaoding, setIsLoading] = React.useState(true)
+  const [reviews, setReviews] = React.useState([])
 
-  // React.useEffect(() => {
-  //   getReviews().then((response) => {
-  //     setReviews(response)
-  //   })
-  // }, [])
+  React.useEffect(() => {
+    getReviews().then((response) => {
+      // setIsLoading(false)
+      setReviews(response)
+    })
+  }, [])
 
   return (
     <Layout>
-      {/* {reviews.map((review) => {
-        console.log({ review })
-        return <div>{review.author}</div>
-      })} */}
+      <div className="flex flex-col w-1/3">
+        {reviews.map((review) => {
+          return <ReviewCard key={review.author} review={review} />
+        })}
+      </div>
+      <div className="w-2/3 px-4"></div>
     </Layout>
   )
 }
