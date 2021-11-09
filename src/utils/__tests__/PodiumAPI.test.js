@@ -7,7 +7,7 @@ import mockedAxios from 'axios'
 
 import { getReviews } from '../PodiumAPI'
 
-export const mockedReviews = [
+const mockedReviews = [
   {
     rating: 3.3,
     publish_date: '2016-06-20T23:25:47.683518Z',
@@ -30,14 +30,6 @@ export const mockedReviews = [
     author: 'Mrs. Destany Boyle PhD',
   },
 ]
-
-export const mockedReview = {
-  rating: 2.2,
-  publish_date: '2016-07-07T23:25:47.672725Z',
-  id: '9786909480754',
-  body: 'The fool doth think he is wise, but the wise man knows himself to be a fool.',
-  author: 'Ms. Simeon Brakus',
-}
 
 describe('getReviews', () => {
   afterEach(() => {
