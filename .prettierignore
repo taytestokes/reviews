@@ -1,0 +1,10 @@
+package.json
+package-lock.json
+README.md
+.eslintrc.json
+.prettierrc
+craco.config.js
+package-lock.json
+package.json
+public/*
+tailwind.config.js
