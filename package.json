@@ -31,6 +31,7 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
+    "test:nowatch": "craco test --watchAll=false",
     "eject": "react-scripts eject",
     "check": "prettier --check .",
     "format": "prettier --write ."
@@ -55,7 +56,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run format"
+      "pre-commit": "npm run format && npm run test:nowatch"
     }
   }
 }
