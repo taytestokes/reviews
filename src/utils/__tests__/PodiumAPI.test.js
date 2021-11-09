@@ -57,15 +57,12 @@ describe('getReviews', () => {
   // Comeback to this?
   //   test('Failure: Should expect an error with a message', () => {
   //     // Setup
-  //     mockedAxios
-  //       .create()
-  //       .get.mockRejectedValueOnce(new Error('Failed request try to fetch reviews.'))
+  //     mockedAxios.create().get.mockRejectedValue(new Error('Failed request try to fetch reviews.'))
 
   //     expect.assertions(1)
 
   //     // Assertions
   //     return getReviews().catch((error) => {
-  //       console.log(error)
   //       expect(error.message).toMatch('Failed request try to fetch reviews.')
   //     })
   //   })
