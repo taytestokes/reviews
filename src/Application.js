@@ -2,6 +2,8 @@ import React from 'react'
 
 import { getReviews } from './utils/PodiumAPI'
 
+import { Layout } from './components/Layout'
+
 export const Application = () => {
   const [reviews, setReviews] = React.useState([])
 
@@ -12,11 +14,11 @@ export const Application = () => {
   }, [])
 
   return (
-    <div>
+    <Layout>
       {reviews.map((review) => {
         console.log({ review })
         return <div>{review.author}</div>
       })}
-    </div>
+    </Layout>
   )
 }
