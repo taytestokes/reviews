@@ -63,5 +63,8 @@
     "hooks": {
       "pre-commit": "npm run format && npm run test:nowatch && npm run lint"
     }
-  }
+  },
+  "jest": {
+    "transformIgnorePatterns": ["/node_modules/(?!d3|d3-array|internmap|delaunator|robust-predicates)"]
+}
 }
