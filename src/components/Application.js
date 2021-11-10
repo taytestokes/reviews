@@ -1,30 +1,19 @@
 import React from 'react'
-
-import useSize from '@react-hook/size'
-
-import { getReviews } from './utils/PodiumAPI'
-
-import { Layout } from './components/Layout'
-import { ReviewCard } from './components/ReviewCard'
-import { LineChart } from './components/LineChart'
-
 import getUnixTime from 'date-fns/getUnixTime'
 import format from 'date-fns/format'
+import useSize from '@react-hook/size'
+
+import { useReviews } from '../hooks/useReviews'
+
+import { Layout } from './Layout'
+import { ReviewCard } from './ReviewCard'
+import { LineChart } from './LineChart'
 
 export const Application = () => {
   const chartWrapperRef = React.useRef()
+
   const [width] = useSize(chartWrapperRef)
-  // const [isLaoding, setIsLoading] = React.useState(true)
-  const [reviews, setReviews] = React.useState([])
-
-  console.log({ reviews })
-
-  React.useEffect(() => {
-    getReviews().then((response) => {
-      // setIsLoading(false)
-      setReviews(response)
-    })
-  }, [])
+  const { reviews } = useReviews()
 
   const structuredChartData = (reviews) =>
     reviews
@@ -45,11 +34,6 @@ export const Application = () => {
         <div className="flex bg-white p-4 mb-2 rounded-md shadow-sm" ref={chartWrapperRef}>
           <LineChart data={structuredChartData(reviews)} width={width} />
         </div>
-      </div>
-      <div className="flex flex-col">
-        {reviews.map((review) => {
-          return <ReviewCard key={review.author} review={review} />
-        })}
       </div>
     </Layout>
   )

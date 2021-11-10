@@ -5,7 +5,7 @@
  */
 import mockedAxios from 'axios'
 
-import { getReviews } from '../PodiumAPI'
+import { getReviews } from '../Requests'
 
 const mockedReviews = [
   {
