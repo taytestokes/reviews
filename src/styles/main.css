@@ -1,3 +1,74 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*
+* Creates a layer for custom styles that fall out of the tailwind design system.
+* 
+* The main reasoning for this is to be able to apply styles to the elements
+* that fall out of our control, for example the svg elements generated from d3
+* when creating the axis lines.
+*/
+@layer components {
+  /* X Axis */
+  .x-axis > path {
+    fill: none;
+    /* Gray 300 */
+    stroke: #d4d4d8;
+  }
+  .x-axis .tick > line {
+    fill: none;
+    stroke: none;
+  }
+  .x-axis .tick > text {
+    /* Gray 600 */
+    fill: #52525b;
+  }
+  /* The order of ticks is actually reversed, so first is last and last is first */
+  .x-axis .tick:first-of-type text {
+    text-anchor: end;
+  }
+  .x-axis .tick:last-of-type text {
+    text-anchor: start;
+  }
+
+  /* X Grid */
+  .x-grid > path {
+    fill: none;
+    stroke: none;
+  }
+  .x-grid .tick > line {
+    /* Gray 240 */
+    stroke: #a1a1aa;
+    stroke-dasharray: 5;
+  }
+
+  /* Y Axis */
+  .y-axis > path {
+    fill: none;
+    stroke: none;
+  }
+  .y-axis .domain {
+    display: none;
+  }
+  .y-axis .tick > line {
+    fill: none;
+    stroke: none;
+  }
+  .y-axis .tick > text {
+    /* Gray 600 */
+    fill: #52525b;
+  }
+
+  /* X Grid */
+  .y-grid > path {
+    fill: none;
+    stroke: none;
+  }
+  .y-grid .tick > line {
+    /* Gray 200 */
+    stroke: #e4e4e7;
+    stroke-dasharray: 6;
+    stroke-linecap: round;
+  }
+}

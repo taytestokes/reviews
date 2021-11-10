@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Logo } from './Logo'
+import { Logo } from './Icons/Logo'
 
 export const Layout = ({ children }) => {
   return (
@@ -11,7 +11,7 @@ export const Layout = ({ children }) => {
           <Logo />
         </div>
       </header>
-      <div className="container mx-auto py-8 flex">{children}</div>
+      <div className="container mx-auto py-8">{children}</div>
     </div>
   )
 }
