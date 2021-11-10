@@ -90,31 +90,30 @@ export const LineChart = ({ data, height = 300, width = 600 }) => {
 
   return (
     <svg
+      aria-label="Line chart displaying the average review scores overtime"
+      data-testid="linechart"
       height={height}
       preserveAspectRatio="xMinYMin meet"
+      role="img"
       width={width}
       xmlns="http://www.w3.org/2000/svg"
     >
       {/* Y Axis Group */}
       <g className="y-axis" ref={yAxisRef} transform={`translate(${CHART_MARGINS.left},0)`} />
-
       {/* YGrid Group*/}
       <g className="y-grid" ref={yGridRef} transform={`translate(${CHART_MARGINS.left},0)`} />
-
       {/* X Axis Group */}
       <g
         className="x-axis"
         ref={xAxisRef}
         transform={`translate(0,${height - CHART_MARGINS.bottom})`}
       />
-
       {/* X Grid Group */}
       <g
         className="x-grid"
         ref={xGridRef}
         transform={`translate(0,${height - CHART_MARGINS.bottom})`}
       />
-
       {/* Data Line */}
       <g>
         <path
@@ -127,7 +126,6 @@ export const LineChart = ({ data, height = 300, width = 600 }) => {
           transform={`translate(0,0)`}
         />
       </g>
-
       {/* Data Points */}
       {data.map((datum) => {
         return (

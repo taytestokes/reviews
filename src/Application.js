@@ -33,7 +33,6 @@ export const Application = () => {
         console.log(format(new Date(review.publish_date), 'MMM'))
 
         return {
-          label: '',
           // getUnixTime stamp returns a timestamp in milliseconds, we need seconds
           x: getUnixTime(new Date(review.publish_date)) * 1000,
           y: review.rating,
