@@ -2,7 +2,7 @@ import React from 'react'
 
 import { getReviews } from '../api/Requests'
 
-export const useReviews = () => {
+export const useGetReviews = () => {
   const [reviews, setReviews] = React.useState([])
   const [isLoadingReviews, setIsLoadingReviews] = React.useState(true)
 
@@ -15,6 +15,7 @@ export const useReviews = () => {
 
   return {
     reviews,
+    setReviews,
     isLoadingReviews,
   }
 }

@@ -11,6 +11,7 @@
     "axios": "^0.24.0",
     "d3": "^7.1.1",
     "date-fns": "^2.25.0",
+    "focus-trap-react": "^8.8.2",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -65,6 +66,8 @@
     }
   },
   "jest": {
-    "transformIgnorePatterns": ["/node_modules/(?!d3|d3-array|internmap|delaunator|robust-predicates)"]
-}
+    "transformIgnorePatterns": [
+      "/node_modules/(?!d3|d3-array|internmap|delaunator|robust-predicates)"
+    ]
+  }
 }

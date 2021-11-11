@@ -1,10 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export const ReviewCard = ({ review }) => {
-  return <div className="flex bg-white p-4 mb-2 rounded-md shadow-sm">{review.author}</div>
+export const ReviewCard = ({ onClick, review }) => {
+  return (
+    <button
+      aria-label="Select to view more information about this review"
+      className="flex hover:bg-gray-50 transition-colors p-4"
+      onClick={onClick}
+    >
+      {review.author}
+    </button>
+  )
 }
 
 ReviewCard.propTypes = {
+  onClick: PropTypes.func,
   review: PropTypes.object,
 }
