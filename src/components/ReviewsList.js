@@ -13,8 +13,6 @@ export const ReviewsList = ({ onRowClick, reviews }) => {
   const isFirstPage = currentPage === 1
   const isLastPage = reviews[reviews.length - 1] === paginatedReviews[paginatedReviews.length - 1]
 
-  console.log(isLastPage)
-
   const handlePreviousCick = () => {
     setCurrentPage((prevCurrentPage) => {
       return prevCurrentPage - 1
