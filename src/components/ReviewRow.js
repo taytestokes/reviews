@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export const ReviewCard = ({ onClick, review }) => {
+export const ReviewRow = ({ onClick, review }) => {
   return (
     <button
       aria-label="Select to view more information about this review"
@@ -13,7 +13,7 @@ export const ReviewCard = ({ onClick, review }) => {
   )
 }
 
-ReviewCard.propTypes = {
+ReviewRow.propTypes = {
   onClick: PropTypes.func,
   review: PropTypes.object,
 }

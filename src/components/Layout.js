@@ -7,7 +7,7 @@ export const Layout = ({ children }) => {
   return (
     <div className="w-screen h-screen flex flex-col overflow-y-hidden bg-gray-100">
       <header className="bg-gray-800 p-4 text-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto">
           <Logo />
         </div>
       </header>
