@@ -58,7 +58,7 @@ export const Application = () => {
         </div>
       </div>
 
-      {showDetailsDrawer ? <Drawer /> : null}
+      {showDetailsDrawer ? <Drawer onClose={() => setShowDetailsDrawer(false)} /> : null}
     </Layout>
   )
 }
