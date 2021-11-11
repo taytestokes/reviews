@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import FocusTrap from 'focus-trap-react'
 
@@ -6,6 +7,10 @@ import { Scrim } from './Scrim'
 
 export const Drawer = ({ children, onClose }) => {
   const [isActive, setIsActive] = React.useState(false)
+
+  // Using a portal to place the drawer higher in the DOM hierarchy
+  // since we heavily using z-index values
+  const portalNode = document.querySelector('#drawer')
 
   const drawerRef = React.useRef(null)
   // This hasBeenAnimatedRef is used to track
@@ -38,7 +43,7 @@ export const Drawer = ({ children, onClose }) => {
     setIsActive(true)
   }, [])
 
-  return (
+  return ReactDOM.createPortal(
     <div className="fixed top-0 left-0 bottom-0 right-0 z-10">
       <Scrim isActive={isActive} />
       <FocusTrap
@@ -72,7 +77,8 @@ export const Drawer = ({ children, onClose }) => {
           {typeof children === 'function' ? children(getExposedDrawerFunctions()) : children}
         </div>
       </FocusTrap>
-    </div>
+    </div>,
+    portalNode,
   )
 }
 
