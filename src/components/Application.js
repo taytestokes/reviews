@@ -10,44 +10,55 @@ import subYears from 'date-fns/subYears'
 
 import { useGetReviews } from '../hooks/useGetReviews'
 
-import { Layout } from './Layout'
+import { getBarChartData } from '../utils/Chart'
 
+import { Layout } from './Layout'
+import { ReviewCard } from './ReviewCard'
 import { LineChart } from './LineChart'
-import { BarChart } from './BarChart'
+import { BarChart } from './charts/BarChart'
+import { Drawer } from './shared/Drawer'
 
 export const Application = () => {
   const chartWrapperRef = React.useRef()
   const { reviews } = useGetReviews()
+  const [showDetailsDrawer, setShowDetailsDrawer] = React.useState(false)
   const [width] = useSize(chartWrapperRef)
-
-  const structuredChartData = (reviews) => {
-    const ratings = reviews.reduce((acc, review) => {
-      const roundedRating = Math.round(review.rating)
-
-      if (!acc[roundedRating]) {
-        acc[roundedRating] = 1
-      } else {
-        acc[roundedRating] += 1
-      }
-
-      return acc
-    }, {})
-
-    return Object.keys(ratings).map((key) => {
-      return {
-        x: Number(key),
-        y: ratings[key],
-      }
-    })
-  }
+  const chartData = getBarChartData(reviews)
+  const totalReviewCount = reviews.length
 
   return (
     <Layout>
-      <div className="flex flex-col w-full">
-        <div className="flex bg-white p-4 mb-2 rounded-md shadow-sm" ref={chartWrapperRef}>
-          <BarChart data={structuredChartData(reviews)} width={width} />
+      <div className="flex flex-grow">
+        <div className="flex flex-col flex-grow overflow-y-auto bg-white w-1/2 rounded-md shadow-sm">
+          <div className="container p-4 border-b-2 border-gray-100">
+            <h2 className="font-bold text-gray-900">User Reviews</h2>
+          </div>
+          <div className="flex flex-col">
+            {reviews.map((review, index) => {
+              console.log(review)
+              return (
+                <ReviewCard
+                  key={`${review.rating}-${review.author}-${index}`}
+                  onClick={() => setShowDetailsDrawer(true)}
+                  review={review}
+                />
+              )
+            })}
+          </div>
+        </div>
+
+        <div className="flex flex-col w-1/2 px-4">
+          <div
+            className="flex flex-col bg-white p-4 mb-2 rounded-md shadow-sm"
+            ref={chartWrapperRef}
+          >
+            <h2 className="font-bold text-gray-900">Total Reviews</h2>
+            <BarChart data={chartData} width={width} />
+          </div>
         </div>
       </div>
+
+      {showDetailsDrawer ? <Drawer /> : null}
     </Layout>
   )
 }
