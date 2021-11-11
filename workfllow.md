@@ -9,3 +9,5 @@
 - Reviews List
 - Pagination
 - Review Row
+
+- Make bar chart accessible

@@ -8,8 +8,8 @@ export const ReviewCard = ({ review }) => {
   return (
     <div className="bg-white rounded-md shadow-sm">
       <div className="flex justify-between p-4">
-        <p className="font-bold text-gray-900">{review.author}</p>
-        <p className="text-gray-600">{formattedDate}</p>
+        <p className="font-bold text-gray-900 py-1.5">{review.author}</p>
+        <p className="text-violet-600 font-bold bg-violet-100 p-1.5 rounded-lg">{formattedDate}</p>
       </div>
       <div className="border-t-2 border-gray-100 p-4">
         <p>{review.body}</p>

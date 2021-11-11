@@ -56,9 +56,9 @@ export const Drawer = ({ children, onClose, title }) => {
         }}
       >
         <div
-          className={`absolute top-0 right-0 bottom-0 z-30 transform transition-transform duration-150 ease-linear ${
+          className={`absolute top-0 right-0 bottom-0 z-30 transform transition-transform duration-200 ease-linear ${
             isActive ? 'translate-x-0' : 'translate-x-full'
-          } bg-white w-1/3`}
+          }  w-full sm:w-2/3 lg:w-1/3`}
           onTransitionEnd={(e) => {
             // Only want this event listener to
             // trigger only for the drawer element
@@ -75,7 +75,7 @@ export const Drawer = ({ children, onClose, title }) => {
           ref={drawerRef}
           role="presentation"
         >
-          <div className="container flex p-4">
+          <div className="w-full bg-white flex p-4 border-b-2 border-gray-100">
             <button
               aria-label="Select to close the drawer"
               className="text-xl text-gray-600"
@@ -86,7 +86,7 @@ export const Drawer = ({ children, onClose, title }) => {
             <h2 className="mx-auto font-bold text-gray-900">{title}</h2>
           </div>
 
-          <div className="flex flex-col h-full bg-gray-100 p-4">{children}</div>
+          <div className="box-border h-full bg-gray-100 p-4 pb-4 overflow-y-auto">{children}</div>
         </div>
       </FocusTrap>
     </div>,

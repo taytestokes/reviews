@@ -11,7 +11,7 @@ const CHART_MARGINS = {
   top: 25,
 }
 
-export const BarChart = ({ data, height = 300, width = 600 }) => {
+export const BarChart = ({ data, height = 300, onBarClick, width = 600 }) => {
   const xAxisRef = React.useRef()
   const xGridRef = React.useRef()
   const yAxisRef = React.useRef()
@@ -64,56 +64,56 @@ export const BarChart = ({ data, height = 300, width = 600 }) => {
   }, [data])
 
   return (
-    <React.Fragment>
-      <svg
-        data-testid="BarChart"
-        height={height}
-        preserveAspectRatio="xMinYMin meet"
-        width={width}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* Y Axis Group */}
-        <g className="y-axis" ref={yAxisRef} transform={`translate(${CHART_MARGINS.left},0)`} />
-        {/* YGrid Group*/}
-        <g className="y-grid" ref={yGridRef} transform={`translate(${CHART_MARGINS.left},0)`} />
-        {/* X Axis Group */}
-        <g
-          className="x-axis"
-          ref={xAxisRef}
-          transform={`translate(0,${height - CHART_MARGINS.bottom})`}
-        />
-        {/* X Grid Group */}
-        <g
-          className="x-grid"
-          ref={xGridRef}
-          transform={`translate(0,${height - CHART_MARGINS.bottom})`}
-        />
+    <svg
+      data-testid="BarChart"
+      height={height}
+      preserveAspectRatio="xMinYMin meet"
+      width={width}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* Y Axis Group */}
+      <g className="y-axis" ref={yAxisRef} transform={`translate(${CHART_MARGINS.left},0)`} />
+      {/* YGrid Group*/}
+      <g className="y-grid" ref={yGridRef} transform={`translate(${CHART_MARGINS.left},0)`} />
+      {/* X Axis Group */}
+      <g
+        className="x-axis"
+        ref={xAxisRef}
+        transform={`translate(0,${height - CHART_MARGINS.bottom})`}
+      />
+      {/* X Grid Group */}
+      <g
+        className="x-grid"
+        ref={xGridRef}
+        transform={`translate(0,${height - CHART_MARGINS.bottom})`}
+      />
 
-        {/* Bars */}
-        <g>
-          {data.map((datum) => {
-            const barHeight = height - yScale(datum.y) - CHART_MARGINS.bottom
-            const barWidth = xScale.bandwidth()
+      {/* Bars */}
+      <g>
+        {data.map((datum) => {
+          const barHeight = height - yScale(datum.y) - CHART_MARGINS.bottom
+          const barWidth = xScale.bandwidth()
 
-            return (
-              <Bar
-                height={barHeight}
-                key={datum.y + datum.x}
-                radius={3}
-                width={barWidth}
-                x={xScale(datum.x)}
-                y={yScale(datum.y)}
-              />
-            )
-          })}
-        </g>
-      </svg>
-    </React.Fragment>
+          return (
+            <Bar
+              height={barHeight}
+              key={datum.y + datum.x}
+              onBarClick={() => onBarClick(datum.x)}
+              radius={3}
+              width={barWidth}
+              x={xScale(datum.x)}
+              y={yScale(datum.y)}
+            />
+          )
+        })}
+      </g>
+    </svg>
   )
 }
 
 BarChart.propTypes = {
   data: PropTypes.array.isRequired,
   height: PropTypes.number,
+  onBarClick: PropTypes.func,
   width: PropTypes.number,
 }

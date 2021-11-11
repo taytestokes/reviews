@@ -5,11 +5,11 @@ import ReactDOM from 'react-dom'
 import './styles/main.css'
 
 // Root Component
-import { Application } from './components/Application'
+import { Dashboard } from './components/Dashboard'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Application />
+    <Dashboard />
   </React.StrictMode>,
   document.getElementById('root'),
 )
