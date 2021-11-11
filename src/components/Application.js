@@ -25,6 +25,10 @@ export const Application = () => {
 
   return (
     <Layout>
+      <div className="container pt-4 pb-8">
+        <h1 className="text-2xl font-bold">Reviews Dashboard</h1>
+      </div>
+
       <div className="flex h-full">
         <div className="w-1/2 flex flex-col ">
           <ReviewsList onRowClick={onRowClick} reviews={reviews} />

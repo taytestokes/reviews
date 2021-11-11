@@ -13,18 +13,6 @@ export const ReviewsList = ({ onRowClick, reviews }) => {
   const isFirstPage = currentPage === 1
   const isLastPage = reviews[reviews.length - 1] === paginatedReviews[paginatedReviews.length - 1]
 
-  const handlePreviousCick = () => {
-    setCurrentPage((prevCurrentPage) => {
-      return prevCurrentPage - 1
-    })
-  }
-
-  const handleNextClick = () => {
-    setCurrentPage((prevCurrentPage) => {
-      return prevCurrentPage + 1
-    })
-  }
-
   return (
     <div className="bg-white rounded-md shadow-sm">
       <div className="container flex items-center p-4 border-b-2 border-gray-100">
@@ -37,14 +25,22 @@ export const ReviewsList = ({ onRowClick, reviews }) => {
           <button
             className="w-18 text-sm p-2 bg-gray-100 text-gray-500 rounded-md mr-2 hover:bg-gray-200 transition-colors"
             disabled={isFirstPage}
-            onClick={handlePreviousCick}
+            onClick={() => {
+              setCurrentPage((prevCurrentPage) => {
+                return prevCurrentPage - 1
+              })
+            }}
           >
             Previous
           </button>
           <button
             className="w-18 text-sm p-2 bg-gray-100 text-gray-500 rounded-md hover:bg-gray-200 transition-colors"
             disabled={isLastPage}
-            onClick={handleNextClick}
+            onClick={() => {
+              setCurrentPage((prevCurrentPage) => {
+                return prevCurrentPage + 1
+              })
+            }}
           >
             Next
           </button>
