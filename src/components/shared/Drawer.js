@@ -31,7 +31,7 @@ export const Drawer = ({ children, onClose, title }) => {
     setIsActive(false)
   }
 
-  // Sets is active after inital render
+  // Sets isActive after inital render
   // to trigger the transitions for the
   // drawer and scrim
   React.useEffect(() => {
