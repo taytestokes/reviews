@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import FocusTrap from 'focus-trap-react'
 
+import { FiArrowLeft } from 'react-icons/fi'
+
 import { Scrim } from './Scrim'
 
-export const Drawer = ({ children, onClose }) => {
+export const Drawer = ({ children, onClose, title }) => {
   const [isActive, setIsActive] = React.useState(false)
 
   // Using a portal to place the drawer higher in the DOM hierarchy
@@ -25,7 +27,7 @@ export const Drawer = ({ children, onClose }) => {
   // and start the onAnimationEnd event
   // that will call the onClose method
   // and close this component
-  const negateActiveState = () => {
+  const setDrawerInactive = () => {
     setIsActive(false)
   }
 
@@ -33,7 +35,7 @@ export const Drawer = ({ children, onClose }) => {
   // drawer functions that we want to expose
   // when rendered using the render props pattern
   const getExposedDrawerFunctions = () => ({
-    negateActiveState,
+    setDrawerInactive,
   })
 
   // Sets is active after inital render
@@ -50,13 +52,13 @@ export const Drawer = ({ children, onClose }) => {
         active={isActive}
         focusTrapOptions={{
           clickOutsideDeactivates: () => hasBeenAnimatedRef.current,
-          onDeactivate: negateActiveState,
+          onDeactivate: setDrawerInactive,
         }}
       >
         <div
           className={`absolute top-0 right-0 bottom-0 z-30 transform transition-transform duration-150 ease-linear ${
             isActive ? 'translate-x-0' : 'translate-x-full'
-          } p-5 bg-white w-1/3`}
+          } bg-white w-1/3`}
           onTransitionEnd={(e) => {
             // Only want this event listener to
             // trigger only for the drawer element
@@ -73,8 +75,18 @@ export const Drawer = ({ children, onClose }) => {
           ref={drawerRef}
           role="presentation"
         >
-          <button onClick={negateActiveState}>Cick Me</button>
-          {typeof children === 'function' ? children(getExposedDrawerFunctions()) : children}
+          <div className="container flex p-4">
+            <button
+              aria-label="Select to close the drawer"
+              className="text-xl text-gray-600"
+              onClick={setDrawerInactive}
+            >
+              <FiArrowLeft />
+            </button>
+            <h2 className="mx-auto font-bold text-gray-900">{title}</h2>
+          </div>
+
+          <div className="flex flex-col h-full bg-gray-100 p-4">{children}</div>
         </div>
       </FocusTrap>
     </div>,
@@ -83,6 +95,7 @@ export const Drawer = ({ children, onClose }) => {
 }
 
 Drawer.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+  children: PropTypes.node,
   onClose: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
 }

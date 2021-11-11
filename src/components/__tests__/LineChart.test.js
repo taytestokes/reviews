@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import { LineChart } from '../LineChart'
+import { LineChart } from '../charts/LineChart'
 
 describe('LineChart', () => {
   const defaultProps = {
