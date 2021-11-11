@@ -9,7 +9,7 @@ export const ReviewRow = ({ onClick, review }) => {
       onClick={onClick}
     >
       <p className="text-gray-900 font-bold text-sm">{review.author}</p>
-      <p className="text-xs text-violet-700 font-bold p-1.5 bg-violet-100 rounded-full">
+      <p className="text-xs text-violet-600 font-bold p-1.5 bg-violet-100 rounded-full">
         {review.rating}
       </p>
     </button>

@@ -1,17 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Logo } from './icons/Logo'
+import { Logo } from './Logo'
 
 export const Layout = ({ children }) => {
   return (
-    <div className="w-screen h-screen flex flex-col overflow-y-hidden bg-gray-100">
-      <header className="bg-gray-800 p-4 text-white">
-        <div className="container mx-auto">
+    <div className="w-screen min-h-screen flex flex-col bg-gray-100 relative">
+      <header className="bg-white py-4">
+        <div className="container mx-auto px-4">
           <Logo />
         </div>
       </header>
-      <div className="container mx-auto flex flex-col flex-grow py-4">{children}</div>
+      <div className="container mx-auto flex flex-col flex-grow p-4">{children}</div>
     </div>
   )
 }
