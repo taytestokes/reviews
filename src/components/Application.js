@@ -14,14 +14,16 @@ import { getBarChartData } from '../utils/Chart'
 
 import { Layout } from './Layout'
 import { ReviewCard } from './ReviewCard'
-import { LineChart } from './LineChart'
+import { LineChart } from './charts/LineChart'
 import { BarChart } from './charts/BarChart'
 import { Drawer } from './shared/Drawer'
+import { ReviewDetailsDrawer } from './ReviewDetailsDrawer'
 
 export const Application = () => {
   const chartWrapperRef = React.useRef()
   const { reviews } = useGetReviews()
   const [showDetailsDrawer, setShowDetailsDrawer] = React.useState(false)
+  const [activeReview, setActiveReview] = React.useState(null)
   const [width] = useSize(chartWrapperRef)
   const chartData = getBarChartData(reviews)
   const totalReviewCount = reviews.length
@@ -35,11 +37,13 @@ export const Application = () => {
           </div>
           <div className="flex flex-col">
             {reviews.map((review, index) => {
-              console.log(review)
               return (
                 <ReviewCard
                   key={`${review.rating}-${review.author}-${index}`}
-                  onClick={() => setShowDetailsDrawer(true)}
+                  onClick={() => {
+                    setActiveReview(review)
+                    setShowDetailsDrawer(true)
+                  }}
                   review={review}
                 />
               )
@@ -58,7 +62,16 @@ export const Application = () => {
         </div>
       </div>
 
-      {showDetailsDrawer ? <Drawer onClose={() => setShowDetailsDrawer(false)} /> : null}
+      {showDetailsDrawer ? (
+        <ReviewDetailsDrawer
+          onClose={() => {
+            setActiveReview(false)
+            setShowDetailsDrawer(false)
+          }}
+          review={activeReview}
+          title="Review Details"
+        />
+      ) : null}
     </Layout>
   )
 }
