@@ -31,18 +31,20 @@ export const Drawer = ({ children, onClose, title }) => {
     setIsActive(false)
   }
 
-  // Returns an object containing the the
-  // drawer functions that we want to expose
-  // when rendered using the render props pattern
-  const getExposedDrawerFunctions = () => ({
-    setDrawerInactive,
-  })
-
   // Sets is active after inital render
   // to trigger the transitions for the
   // drawer and scrim
   React.useEffect(() => {
     setIsActive(true)
+
+    // Prevent the body from underneath the overlay from scrolling
+    // if the content exceeds the viewport height
+    document.querySelector('body').style.overflow = 'hidden'
+
+    // Remove overflow style upon unmounting
+    return () => {
+      document.querySelector('body').style.overflow = null
+    }
   }, [])
 
   return ReactDOM.createPortal(

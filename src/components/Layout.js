@@ -5,7 +5,7 @@ import { Logo } from './Logo'
 
 export const Layout = ({ children }) => {
   return (
-    <div className="w-screen min-h-screen flex flex-col bg-gray-100">
+    <div className="w-screen min-h-screen flex flex-col bg-gray-100 relative">
       <header className="bg-white py-4">
         <div className="container mx-auto px-4">
           <Logo />
