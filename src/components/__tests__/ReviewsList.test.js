@@ -56,6 +56,8 @@ const defaultProps = {
 describe('ReviewsList', () => {
   test('renders correctly', () => {
     render(<ReviewsList {...defaultProps} />)
+
+    expect(screen.getByText('User Reviews')).toBeInTheDocument()
   })
 
   test('the previous button should be disabled when on the first page of user reviews', () => {
