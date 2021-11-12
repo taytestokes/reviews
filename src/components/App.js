@@ -13,7 +13,7 @@ import { ReviewsDrawer } from './ReviewsDrawer'
 import { ReviewsListSkeleton } from './skeletons/ReviewsListSkeleton'
 import { BarChartSkeleton } from './skeletons/BarChartSkeleton'
 
-export const Dashboard = () => {
+export const App = () => {
   const chartWrapperRef = React.useRef()
 
   const { reviews, isLoadingReviews } = useGetReviews()
@@ -25,7 +25,7 @@ export const Dashboard = () => {
   const [activeReview, setActiveReview] = React.useState(null)
   const [filteredReviews, setFilteredReviews] = React.useState(reviews)
 
-  const onRowClick = (review) => {
+  const onReviewRowClick = (review) => {
     setActiveReview(review)
     setShowDetailsDrawer(true)
   }
@@ -58,7 +58,7 @@ export const Dashboard = () => {
       {isLoadingReviews ? (
         <ReviewsListSkeleton />
       ) : (
-        <ReviewsList onRowClick={onRowClick} reviews={reviews} />
+        <ReviewsList onRowClick={onReviewRowClick} reviews={reviews} />
       )}
 
       {showDetailsDrawer ? (
@@ -71,6 +71,7 @@ export const Dashboard = () => {
           title="Review Details"
         />
       ) : null}
+
       {showReviewsDrawer ? (
         <ReviewsDrawer onClose={() => setShowReviewsDrawer(false)} reviews={filteredReviews} />
       ) : null}

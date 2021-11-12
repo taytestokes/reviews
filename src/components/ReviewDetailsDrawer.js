@@ -11,7 +11,6 @@ export const ReviewDetailsDrawer = ({ onClose, review }) => {
       <div className="w-full flex justify-center  pb-4">
         <RatingBadge rating={review.rating} />
       </div>
-
       <ReviewCard review={review} />
     </Drawer>
   )
