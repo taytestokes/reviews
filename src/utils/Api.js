@@ -4,15 +4,15 @@ import axios from 'axios'
 const apiKey = 'H3TM28wjL8R4#HTnqk?c'
 
 // Base url used to access the podium review api
-export const baseApiUrl = 'https://shakespeare.podium.com/api'
+const baseApiUrl = 'https://shakespeare.podium.com/api'
 
 // Collection of endpoints used to talk to the api
-export const apiEndPoints = {
+const apiEndPoints = {
   REVIEWS: '/reviews',
 }
 
 // HTTP instance that will be configured with a few defaults that will be applied upon every request
-export const axiosInstance = axios.create({
+const axiosInstance = axios.create({
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
@@ -21,3 +21,14 @@ export const axiosInstance = axios.create({
   },
   validateStatus: (status) => status >= 200 && status < 300,
 })
+
+/**
+ * Method: GET
+ * Endpoint: /reviews
+ */
+export const getReviews = () => {
+  return axiosInstance
+    .get(baseApiUrl + apiEndPoints.REVIEWS)
+    .then((response) => response.data)
+    .catch((error) => error)
+}

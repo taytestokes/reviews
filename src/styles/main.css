@@ -31,18 +31,6 @@
   .x-axis .tick:last-of-type text {
     text-anchor: start;
   }
-
-  /* X Grid */
-  .x-grid > path {
-    fill: none;
-    stroke: none;
-  }
-  .x-grid .tick > line {
-    /* Gray 240 */
-    stroke: #a1a1aa;
-    stroke-dasharray: 5;
-  }
-
   /* Y Axis */
   .y-axis > path {
     fill: none;
@@ -59,8 +47,7 @@
     /* Gray 600 */
     fill: #52525b;
   }
-
-  /* X Grid */
+  /* Y Grid */
   .y-grid > path {
     fill: none;
     stroke: none;
