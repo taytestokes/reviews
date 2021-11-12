@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { getReviews } from '../api/Requests'
+import { getReviews } from '../utils/Api'
 
 export const useGetReviews = () => {
   const [reviews, setReviews] = React.useState([])
@@ -10,7 +10,7 @@ export const useGetReviews = () => {
   // to get all the reviews available upon initialization
   React.useEffect(() => {
     getReviews().then((response) => {
-      setIsLoadingReviews(false)
+      // setIsLoadingReviews(false)
       setReviews(response)
     })
   }, [])
