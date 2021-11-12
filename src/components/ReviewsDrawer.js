@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Drawer } from './shared/Drawer'
+import { Drawer } from './Drawer'
 import { ReviewCard } from './ReviewCard'
 
 export const ReviewsDrawer = ({ onClose, reviews }) => {
