@@ -10,7 +10,7 @@ export const useGetReviews = () => {
   // to get all the reviews available upon initialization
   React.useEffect(() => {
     getReviews().then((response) => {
-      // setIsLoadingReviews(false)
+      setIsLoadingReviews(false)
       setReviews(response)
     })
   }, [])
