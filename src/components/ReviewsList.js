@@ -13,7 +13,7 @@ export const ReviewsList = ({ onRowClick, reviews, reviewsPerPage }) => {
   const isLastPage = reviews[reviews.length - 1] === paginatedReviews[paginatedReviews.length - 1]
 
   return (
-    <div className="bg-white rounded-md shadow-sm">
+    <div className="bg-white rounded-md shadow-sm" data-testid="reviewsList">
       <div className="container flex items-center p-4 border-b-2 border-gray-100">
         <div className="w-full flex flex-col">
           <h2 className="font-bold text-gray-900">User Reviews</h2>
@@ -48,7 +48,7 @@ export const ReviewsList = ({ onRowClick, reviews, reviewsPerPage }) => {
         </div>
       </div>
 
-      <div className="container">
+      <ul className="container">
         {paginatedReviews.map((review, index) => {
           return (
             <ReviewRow
@@ -58,7 +58,7 @@ export const ReviewsList = ({ onRowClick, reviews, reviewsPerPage }) => {
             />
           )
         })}
-      </div>
+      </ul>
     </div>
   )
 }
