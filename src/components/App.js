@@ -10,6 +10,7 @@ import { ReviewDetailsDrawer } from './ReviewDetailsDrawer'
 import { ReviewsList } from './ReviewsList'
 import { ReviewsDrawer } from './ReviewsDrawer'
 import { Loader } from './Loader'
+import { TotalReviews } from './TotalReviews'
 
 export const App = () => {
   const { reviews, isLoadingReviews } = useGetReviews()
@@ -32,6 +33,12 @@ export const App = () => {
     setShowReviewsDrawer(true)
   }
 
+  const onViewReviewsClick = () => {
+    setShowReviewsDrawer(true)
+  }
+
+  const totalReviews = reviews.length
+
   return (
     <Layout>
       {isLoadingReviews ? (
@@ -39,7 +46,17 @@ export const App = () => {
       ) : (
         <div>
           <h1 className="text-2xl font-bold">Reviews Dashboard</h1>
-          <ReviewsBarChart data={chartData} onBarClick={onBarClick} />
+
+          <div className="w-full h-full flex flex-col md:flex-row flex-grow pb-8 mt-8 md:space-x-8">
+            <div className="w-full md:w-3/5">
+              <ReviewsBarChart data={chartData} onBarClick={onBarClick} />
+            </div>
+
+            <div className="w-full md:w-2/5 mt-8 md:mt-0 flex">
+              <TotalReviews onButtonClick={onViewReviewsClick} total={totalReviews} />
+            </div>
+          </div>
+
           <ReviewsList onRowClick={onReviewRowClick} reviews={reviews} reviewsPerPage={10} />
         </div>
       )}
@@ -54,8 +71,9 @@ export const App = () => {
           title="Review Details"
         />
       ) : null}
+
       {showReviewsDrawer ? (
-        <ReviewsDrawer onClose={() => setShowReviewsDrawer(false)} reviews={filteredReviews} />
+        <ReviewsDrawer onClose={() => setShowReviewsDrawer(false)} reviews={reviews} />
       ) : null}
     </Layout>
   )

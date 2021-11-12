@@ -16,7 +16,7 @@ export const ReviewsList = ({ onRowClick, reviews, reviewsPerPage }) => {
     <div className="bg-white rounded-md shadow-sm" data-testid="reviewsList">
       <div className="container flex items-center p-4 border-b-2 border-gray-100">
         <div className="w-full flex flex-col">
-          <h2 className="font-bold text-gray-900">User Reviews</h2>
+          <h2 className="font-bold text-lg text-gray-900">User Reviews</h2>
           <p className="text-xs text-gray-600">
             Showing {indexOfFirstReview + 1} to {indexOfLastReview} of {reviews.length} results
           </p>
@@ -24,7 +24,7 @@ export const ReviewsList = ({ onRowClick, reviews, reviewsPerPage }) => {
 
         <div className="ml-auto flex">
           <button
-            className="w-18 text-sm p-2 bg-gray-200 hover:bg-gray-300 text-gray-600 rounded-md mr-2 transition-colors"
+            className="w-18 text-sm p-2 bg-gray-800 hover:bg-gray-700 transition-colors ease-linear text-white rounded-md mr-2"
             disabled={isFirstPage}
             onClick={() => {
               setCurrentPage((prevCurrentPage) => {
@@ -35,7 +35,7 @@ export const ReviewsList = ({ onRowClick, reviews, reviewsPerPage }) => {
             Previous
           </button>
           <button
-            className="w-18 text-sm p-2 bg-gray-200 hover:bg-gray-300 text-gray-600 rounded-md transition-colors"
+            className="w-18 text-sm p-2 bg-gray-800 hover:bg-gray-700 transition-colors ease-linear text-white rounded-md mr-2"
             disabled={isLastPage}
             onClick={() => {
               setCurrentPage((prevCurrentPage) => {

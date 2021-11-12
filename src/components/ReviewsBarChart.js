@@ -57,11 +57,8 @@ export const ReviewsBarChart = ({ data, height, onBarClick }) => {
   }, [data])
 
   return (
-    <div
-      className="w-full flex flex-col bg-white p-4 my-8 rounded-md shadow-sm"
-      ref={chartWrapperRef}
-    >
-      <h2 className="font-bold text-lg text-gray-900">Total Reviews By Rating</h2>
+    <div className="p-4 bg-white rounded-md shadow-sm" ref={chartWrapperRef}>
+      <h2 className="font-bold text-lg text-gray-900">Reviews By Rating</h2>
 
       <svg
         data-testid="ReviewsBarChart"
@@ -104,8 +101,8 @@ export const ReviewsBarChart = ({ data, height, onBarClick }) => {
             return (
               <path
                 aria-hidden={onBarClick ? false : true}
-                ariaLabel={`Select to view reviews with a rating of ${datum.x}`}
-                className="fill-current text-violet-600 hover:text-violet-700 transition-all cursor-pointer"
+                aria-label={`Select to view reviews with a rating of ${datum.x}`}
+                className="fill-current text-violet-600 hover:text-violet-700 transition-colors ease-linear cursor-pointer"
                 d={drawBarPath({
                   height: barHeight,
                   radius: 3,
@@ -142,5 +139,4 @@ ReviewsBarChart.propTypes = {
 ReviewsBarChart.defaultProps = {
   ariaLabel: 'ReviewsBarChart',
   height: 300,
-  width: 600,
 }
