@@ -25,7 +25,7 @@ export const ReviewsList = ({ onRowClick, reviews }) => {
 
         <div className="ml-auto flex">
           <button
-            className="w-18 text-sm p-2 bg-gray-900 hover:bg-gray-800  text-white rounded-md mr-2 transition-colors"
+            className="w-18 text-sm p-2 bg-gray-200 hover:bg-gray-300 text-gray-600 rounded-md mr-2 transition-colors"
             disabled={isFirstPage}
             onClick={() => {
               setCurrentPage((prevCurrentPage) => {
@@ -36,7 +36,7 @@ export const ReviewsList = ({ onRowClick, reviews }) => {
             Previous
           </button>
           <button
-            className="w-18 text-sm p-2 bg-gray-900 hover:bg-gray-800 text-white rounded-md transition-colors"
+            className="w-18 text-sm p-2 bg-gray-200 hover:bg-gray-300 text-gray-600 rounded-md transition-colors"
             disabled={isLastPage}
             onClick={() => {
               setCurrentPage((prevCurrentPage) => {
