@@ -13,7 +13,6 @@ const CHART_MARGINS = {
 
 export const BarChart = ({ data, height, onBarClick, width }) => {
   const xAxisRef = React.useRef()
-  const xGridRef = React.useRef()
   const yAxisRef = React.useRef()
   const yGridRef = React.useRef()
 
@@ -65,6 +64,7 @@ export const BarChart = ({ data, height, onBarClick, width }) => {
       <g
         aria-hidden={true}
         className="y-axis"
+        data-testid="yAxis"
         ref={yAxisRef}
         transform={`translate(${CHART_MARGINS.left},0)`}
       />
@@ -72,6 +72,7 @@ export const BarChart = ({ data, height, onBarClick, width }) => {
       <g
         aria-hidden={true}
         className="y-grid"
+        data-testid="yGrid"
         ref={yGridRef}
         transform={`translate(${CHART_MARGINS.left},0)`}
       />
@@ -79,14 +80,8 @@ export const BarChart = ({ data, height, onBarClick, width }) => {
       <g
         aria-hidden={true}
         className="x-axis"
+        data-testid="xAxis"
         ref={xAxisRef}
-        transform={`translate(0,${height - CHART_MARGINS.bottom})`}
-      />
-      {/* X Grid Group */}
-      <g
-        aria-hidden={true}
-        className="x-grid"
-        ref={xGridRef}
         transform={`translate(0,${height - CHART_MARGINS.bottom})`}
       />
 

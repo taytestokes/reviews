@@ -3,10 +3,9 @@ import PropTypes from 'prop-types'
 
 import { ReviewRow } from './ReviewRow'
 
-export const ReviewsList = ({ onRowClick, reviews }) => {
+export const ReviewsList = ({ onRowClick, reviews, reviewsPerPage }) => {
   const [currentPage, setCurrentPage] = React.useState(1)
 
-  const reviewsPerPage = 10
   const indexOfLastReview = currentPage * reviewsPerPage
   const indexOfFirstReview = indexOfLastReview - reviewsPerPage
   const paginatedReviews = reviews.slice(indexOfFirstReview, indexOfLastReview)
@@ -14,7 +13,7 @@ export const ReviewsList = ({ onRowClick, reviews }) => {
   const isLastPage = reviews[reviews.length - 1] === paginatedReviews[paginatedReviews.length - 1]
 
   return (
-    <div className="bg-white rounded-md shadow-sm">
+    <div className="bg-white rounded-md shadow-sm" data-testid="reviewsList">
       <div className="container flex items-center p-4 border-b-2 border-gray-100">
         <div className="w-full flex flex-col">
           <h2 className="font-bold text-gray-900">User Reviews</h2>
@@ -25,7 +24,7 @@ export const ReviewsList = ({ onRowClick, reviews }) => {
 
         <div className="ml-auto flex">
           <button
-            className="w-18 text-sm p-2 bg-gray-900 hover:bg-gray-800  text-white rounded-md mr-2 transition-colors"
+            className="w-18 text-sm p-2 bg-gray-200 hover:bg-gray-300 text-gray-600 rounded-md mr-2 transition-colors"
             disabled={isFirstPage}
             onClick={() => {
               setCurrentPage((prevCurrentPage) => {
@@ -36,7 +35,7 @@ export const ReviewsList = ({ onRowClick, reviews }) => {
             Previous
           </button>
           <button
-            className="w-18 text-sm p-2 bg-gray-900 hover:bg-gray-800 text-white rounded-md transition-colors"
+            className="w-18 text-sm p-2 bg-gray-200 hover:bg-gray-300 text-gray-600 rounded-md transition-colors"
             disabled={isLastPage}
             onClick={() => {
               setCurrentPage((prevCurrentPage) => {
@@ -49,7 +48,7 @@ export const ReviewsList = ({ onRowClick, reviews }) => {
         </div>
       </div>
 
-      <div className="container">
+      <ul className="container">
         {paginatedReviews.map((review, index) => {
           return (
             <ReviewRow
@@ -59,7 +58,7 @@ export const ReviewsList = ({ onRowClick, reviews }) => {
             />
           )
         })}
-      </div>
+      </ul>
     </div>
   )
 }
@@ -67,4 +66,5 @@ export const ReviewsList = ({ onRowClick, reviews }) => {
 ReviewsList.propTypes = {
   onRowClick: PropTypes.func.isRequired,
   reviews: PropTypes.array,
+  reviewsPerPage: PropTypes.number.isRequired,
 }

@@ -58,7 +58,7 @@ export const App = () => {
       {isLoadingReviews ? (
         <ReviewsListSkeleton />
       ) : (
-        <ReviewsList onRowClick={onReviewRowClick} reviews={reviews} />
+        <ReviewsList onRowClick={onReviewRowClick} reviews={reviews} reviewsPerPage={10} />
       )}
 
       {showDetailsDrawer ? (

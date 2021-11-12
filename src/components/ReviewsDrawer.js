@@ -7,11 +7,15 @@ import { ReviewCard } from './ReviewCard'
 export const ReviewsDrawer = ({ onClose, reviews }) => {
   return (
     <Drawer onClose={onClose} title="Reviews">
-      <div className="min-h-full space-y-6 pb-16">
+      <ul className="min-h-full space-y-6 pb-16">
         {reviews.map((review, index) => {
-          return <ReviewCard key={`${review.rating}-${review.author}-${index}`} review={review} />
+          return (
+            <li key={`${review.rating}-${review.author}-${index}`}>
+              <ReviewCard review={review} />
+            </li>
+          )
         })}
-      </div>
+      </ul>
     </Drawer>
   )
 }

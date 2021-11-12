@@ -6,7 +6,7 @@ export const ReviewCard = ({ review }) => {
   const formattedDate = format(new Date(review.publish_date), 'MMMM do, yyyy')
 
   return (
-    <div className="bg-white rounded-md shadow-sm">
+    <div className="bg-white rounded-md shadow-sm" data-testid="reviewCard">
       <div className="flex justify-between p-4">
         <p className="font-bold text-gray-900 py-1.5">{review.author}</p>
         <p className="text-violet-600 font-bold bg-violet-100 p-1.5 rounded-lg">{formattedDate}</p>
