@@ -3,10 +3,9 @@ import PropTypes from 'prop-types'
 
 import { ReviewRow } from './ReviewRow'
 
-export const ReviewsList = ({ onRowClick, reviews }) => {
+export const ReviewsList = ({ onRowClick, reviews, reviewsPerPage }) => {
   const [currentPage, setCurrentPage] = React.useState(1)
 
-  const reviewsPerPage = 10
   const indexOfLastReview = currentPage * reviewsPerPage
   const indexOfFirstReview = indexOfLastReview - reviewsPerPage
   const paginatedReviews = reviews.slice(indexOfFirstReview, indexOfLastReview)
@@ -67,4 +66,5 @@ export const ReviewsList = ({ onRowClick, reviews }) => {
 ReviewsList.propTypes = {
   onRowClick: PropTypes.func.isRequired,
   reviews: PropTypes.array,
+  reviewsPerPage: PropTypes.number.isRequired,
 }

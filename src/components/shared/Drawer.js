@@ -48,7 +48,7 @@ export const Drawer = ({ children, onClose, title }) => {
   }, [])
 
   return ReactDOM.createPortal(
-    <div className="fixed top-0 left-0 bottom-0 right-0 z-10">
+    <div className="fixed top-0 left-0 bottom-0 right-0 z-10" data-testid="drawer">
       <Scrim isActive={isActive} />
       <FocusTrap
         active={isActive}
