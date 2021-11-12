@@ -110,3 +110,7 @@ npm run cypress
 - Jest - Used for writing unit tests.
 - React Testing Library - Used for writing integrations tests on the components.
 - Cypress - Used for creating end to end tests.
+
+## Contributing
+
+Pull requests welcome!
