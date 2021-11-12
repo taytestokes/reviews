@@ -1,4 +1,4 @@
-describe('Barchart', () => {
+describe('ReviewsBarChart', () => {
   it('should open the reviews drawer when a bar is selected using a click', () => {
     cy.visit('http://localhost:3000')
 

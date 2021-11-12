@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 
-import { BarChart } from '../charts/BarChart'
+import { ReviewsBarChart } from '../ReviewsBarChart'
 
 const defaultProps = {
   data: [
@@ -35,44 +35,44 @@ const defaultProps = {
   width: 500,
 }
 
-describe('BarChart', () => {
+describe('ReviewsBarChart', () => {
   test('it should render the bar chart correctly', () => {
-    render(<BarChart {...defaultProps} />)
+    render(<ReviewsBarChart {...defaultProps} />)
 
-    const barChartElement = screen.getByTestId('BarChart')
+    const barChartElement = screen.getByTestId('ReviewsBarChart')
     expect(barChartElement).toBeInTheDocument()
   })
 
   test('should render the y axis', () => {
-    render(<BarChart {...defaultProps} />)
+    render(<ReviewsBarChart {...defaultProps} />)
 
     const yAxisElement = screen.getByTestId('yAxis')
     expect(yAxisElement).toBeInTheDocument()
   })
 
   test('should render the x axis', () => {
-    render(<BarChart {...defaultProps} />)
+    render(<ReviewsBarChart {...defaultProps} />)
 
     const xAxisElement = screen.getByTestId('xAxis')
     expect(xAxisElement).toBeInTheDocument()
   })
 
   test('should render the y grid', () => {
-    render(<BarChart {...defaultProps} />)
+    render(<ReviewsBarChart {...defaultProps} />)
 
     const yGridElement = screen.getByTestId('yGrid')
     expect(yGridElement).toBeInTheDocument()
   })
 
   test('should render a bar for each data point', () => {
-    render(<BarChart {...defaultProps} />)
+    render(<ReviewsBarChart {...defaultProps} />)
 
     const barElements = screen.getAllByRole('button')
     expect(barElements).toHaveLength(6)
   })
 
   test('should not render a bar for when data set is empty', () => {
-    render(<BarChart {...defaultProps} data={[]} />)
+    render(<ReviewsBarChart {...defaultProps} data={[]} />)
 
     const barElements = screen.queryAllByRole('button')
     expect(barElements).toHaveLength(0)
