@@ -44,7 +44,12 @@ export const Dashboard = () => {
       <div className="flex flex-col w-full mt-8">
         <div className="flex flex-col bg-white p-4 rounded-md shadow-sm" ref={chartWrapperRef}>
           <h2 className="font-bold text-lg text-gray-900">Total Reviews</h2>
-          <BarChart data={chartData} onBarClick={onBarClick} width={width} />
+          <BarChart
+            ariaLabel="Barchart displaying the total count of review ratings"
+            data={chartData}
+            onBarClick={onBarClick}
+            width={width}
+          />
         </div>
       </div>
 

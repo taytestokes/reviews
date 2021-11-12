@@ -11,26 +11,16 @@ const CHART_MARGINS = {
   top: 25,
 }
 
-export const BarChart = ({ data, height = 300, onBarClick, width = 600 }) => {
+export const BarChart = ({ data, height, onBarClick, width }) => {
   const xAxisRef = React.useRef()
   const xGridRef = React.useRef()
   const yAxisRef = React.useRef()
   const yGridRef = React.useRef()
 
-  const { yValues } = data.reduce(
-    (acc, datum) => {
-      acc.yValues.push(datum.y)
-
-      return acc
-    },
-    {
-      yValues: [],
-    },
-  )
-
-  const [_, yMaxVal] = d3.extent(yValues)
+  const yValues = data.map((datum) => datum.y)
+  const xValues = d3.extent(yValues)
   const xDomain = Object.keys(data).map(Number)
-  const yDomain = [0, Math.ceil(yMaxVal / 10) * 10]
+  const yDomain = [0, Math.ceil(xValues[xValues.length - 1] / 10) * 10]
 
   // Scales
   const xScale = d3
@@ -72,17 +62,29 @@ export const BarChart = ({ data, height = 300, onBarClick, width = 600 }) => {
       xmlns="http://www.w3.org/2000/svg"
     >
       {/* Y Axis Group */}
-      <g className="y-axis" ref={yAxisRef} transform={`translate(${CHART_MARGINS.left},0)`} />
+      <g
+        aria-hidden={true}
+        className="y-axis"
+        ref={yAxisRef}
+        transform={`translate(${CHART_MARGINS.left},0)`}
+      />
       {/* YGrid Group*/}
-      <g className="y-grid" ref={yGridRef} transform={`translate(${CHART_MARGINS.left},0)`} />
+      <g
+        aria-hidden={true}
+        className="y-grid"
+        ref={yGridRef}
+        transform={`translate(${CHART_MARGINS.left},0)`}
+      />
       {/* X Axis Group */}
       <g
+        aria-hidden={true}
         className="x-axis"
         ref={xAxisRef}
         transform={`translate(0,${height - CHART_MARGINS.bottom})`}
       />
       {/* X Grid Group */}
       <g
+        aria-hidden={true}
         className="x-grid"
         ref={xGridRef}
         transform={`translate(0,${height - CHART_MARGINS.bottom})`}
@@ -96,6 +98,7 @@ export const BarChart = ({ data, height = 300, onBarClick, width = 600 }) => {
 
           return (
             <Bar
+              ariaLabel={`Select to view reviews with a rating of ${datum.x}`}
               height={barHeight}
               key={datum.y + datum.x}
               onBarClick={() => onBarClick(datum.x)}
@@ -116,4 +119,10 @@ BarChart.propTypes = {
   height: PropTypes.number,
   onBarClick: PropTypes.func,
   width: PropTypes.number,
+}
+
+BarChart.defaultProps = {
+  ariaLabel: 'Barchart',
+  height: 300,
+  width: 600,
 }
