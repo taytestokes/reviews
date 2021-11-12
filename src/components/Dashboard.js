@@ -10,11 +10,13 @@ import { BarChart } from './charts/BarChart'
 import { ReviewDetailsDrawer } from './ReviewDetailsDrawer'
 import { ReviewsList } from './ReviewsList'
 import { ReviewsDrawer } from './ReviewsDrawer'
+import { ReviewsListSkeleton } from './skeletons/ReviewsListSkeleton'
+import { BarChartSkeleton } from './skeletons/BarChartSkeleton'
 
 export const Dashboard = () => {
   const chartWrapperRef = React.useRef()
 
-  const { reviews } = useGetReviews()
+  const { reviews, isLoadingReviews } = useGetReviews()
   const [width] = useSize(chartWrapperRef)
   const chartData = getBarChartData(reviews)
 
@@ -37,25 +39,27 @@ export const Dashboard = () => {
 
   return (
     <Layout>
-      <div className="container mt-4">
-        <h1 className="text-2xl font-bold">Reviews Dashboard</h1>
+      <h1 className="text-2xl font-bold">Reviews Dashboard</h1>
+
+      <div
+        className="w-full flex flex-col bg-white p-4 my-8 rounded-md shadow-sm"
+        ref={chartWrapperRef}
+      >
+        {isLoadingReviews ? (
+          <BarChartSkeleton />
+        ) : (
+          <React.Fragment>
+            <h2 className="font-bold text-lg text-gray-900">Total Reviews</h2>
+            <BarChart data={chartData} onBarClick={onBarClick} width={width} />
+          </React.Fragment>
+        )}
       </div>
 
-      <div className="flex flex-col w-full mt-8">
-        <div className="flex flex-col bg-white p-4 rounded-md shadow-sm" ref={chartWrapperRef}>
-          <h2 className="font-bold text-lg text-gray-900">Total Reviews</h2>
-          <BarChart
-            ariaLabel="Barchart displaying the total count of review ratings"
-            data={chartData}
-            onBarClick={onBarClick}
-            width={width}
-          />
-        </div>
-      </div>
-
-      <div className="w-full flex flex-col mt-8">
+      {isLoadingReviews ? (
+        <ReviewsListSkeleton />
+      ) : (
         <ReviewsList onRowClick={onRowClick} reviews={reviews} />
-      </div>
+      )}
 
       {showDetailsDrawer ? (
         <ReviewDetailsDrawer
@@ -67,7 +71,6 @@ export const Dashboard = () => {
           title="Review Details"
         />
       ) : null}
-
       {showReviewsDrawer ? (
         <ReviewsDrawer onClose={() => setShowReviewsDrawer(false)} reviews={filteredReviews} />
       ) : null}
