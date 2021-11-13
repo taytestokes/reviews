@@ -3,7 +3,10 @@ import PropTypes from 'prop-types'
 
 export const TotalReviews = ({ onButtonClick, total }) => {
   return (
-    <div className="w-full flex flex-col bg-white p-4 rounded-md shadow-sm">
+    <div
+      className="w-full flex flex-col bg-white p-4 rounded-md shadow-sm"
+      data-testid="totalReviews"
+    >
       <h2 className="font-bold text-lg text-gray-900">Total Reviews</h2>
       <div className="flex flex-col flex-grow items-center">
         <div className="w-full p-8 flex flex-col flex-grow items-center justify-center">
