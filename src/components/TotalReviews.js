@@ -8,7 +8,6 @@ export const TotalReviews = ({ onButtonClick, total }) => {
       <div className="flex flex-col flex-grow items-center">
         <div className="w-full p-8 flex flex-col flex-grow items-center justify-center">
           <p className="font-bold text-8xl">{total}</p>
-          <p className="text-gray-600">Total Reviews</p>
         </div>
         <button
           aria-label="Select to view all reviews"

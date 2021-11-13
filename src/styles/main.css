@@ -24,13 +24,6 @@
     /* Gray 600 */
     fill: #52525b;
   }
-  /* The order of ticks is actually reversed, so first is last and last is first */
-  .x-axis .tick:first-of-type text {
-    text-anchor: end;
-  }
-  .x-axis .tick:last-of-type text {
-    text-anchor: start;
-  }
   /* Y Axis */
   .y-axis > path {
     fill: none;
