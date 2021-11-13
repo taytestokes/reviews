@@ -55,13 +55,13 @@ a user interface that is easily consumable through the use of data visualization
     Using HTTP
 
     ```
-    https://github.com/taytestokes/reviews.git
+    git clone https://github.com/taytestokes/reviews.git
     ```
 
     Using SSH
 
     ```
-    git@github.com:taytestokes/reviews.git
+    git clone git@github.com:taytestokes/reviews.git
     ```
 
 4. Install Dependencies
