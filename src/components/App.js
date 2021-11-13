@@ -1,8 +1,9 @@
 import React from 'react'
 
-import { useGetReviews } from '../hooks/useGetReviews'
-
 import { getBarChartData } from '../utils/Chart'
+import { getReviews } from '../utils/Api'
+
+import { useFilteredReviews } from '../hooks/useFilteredReviews'
 
 import { Layout } from './Layout'
 import { ReviewsBarChart } from './ReviewsBarChart'
@@ -13,31 +14,31 @@ import { Loader } from './Loader'
 import { TotalReviews } from './TotalReviews'
 
 export const App = () => {
-  const { reviews, isLoadingReviews } = useGetReviews()
-  const chartData = getBarChartData(reviews)
-
+  const [rawReviews, setRawReviews] = React.useState([])
+  const [activeReview, setActiveReview] = React.useState(null)
+  const [isLoadingReviews, setIsLoadingReviews] = React.useState(true)
   const [showDetailsDrawer, setShowDetailsDrawer] = React.useState(false)
   const [showReviewsDrawer, setShowReviewsDrawer] = React.useState(false)
-  const [activeReview, setActiveReview] = React.useState(null)
-  const [filteredReviews, setFilteredReviews] = React.useState(reviews)
 
-  const onReviewRowClick = (review) => {
-    setActiveReview(review)
-    setShowDetailsDrawer(true)
-  }
+  // Use the unfiltered reviews to get the data set needed
+  // for the bar graph
+  const chartData = getBarChartData(rawReviews)
 
-  const onBarClick = (rating) => {
-    setFilteredReviews(
-      reviews.filter((review) => review.rating >= rating && review.rating < rating + 1),
-    )
-    setShowReviewsDrawer(true)
-  }
+  // Want to keep track of the total amount of raw reviews
+  const totalReviews = rawReviews.length
 
-  const onViewReviewsClick = () => {
-    setShowReviewsDrawer(true)
-  }
+  // Custom hook to manage filtering reviews
+  const { filteredReviews, filterReviewsByRating, resetFilteredReviews } =
+    useFilteredReviews(rawReviews)
 
-  const totalReviews = reviews.length
+  // Makes a fetch request using the api utils
+  // to get all the reviews available upon initialization
+  React.useEffect(() => {
+    getReviews().then((response) => {
+      setIsLoadingReviews(false)
+      setRawReviews(response)
+    })
+  }, [])
 
   return (
     <Layout>
@@ -49,15 +50,33 @@ export const App = () => {
 
           <div className="w-full h-full flex flex-col md:flex-row flex-grow pb-8 mt-8 md:space-x-8">
             <div className="w-full md:w-3/5">
-              <ReviewsBarChart data={chartData} onBarClick={onBarClick} />
+              <ReviewsBarChart
+                data={chartData}
+                onBarClick={(rating) => {
+                  filterReviewsByRating(rating)
+                  setShowReviewsDrawer(true)
+                }}
+              />
             </div>
 
             <div className="w-full md:w-2/5 mt-8 md:mt-0 flex">
-              <TotalReviews onButtonClick={onViewReviewsClick} total={totalReviews} />
+              <TotalReviews
+                onButtonClick={() => {
+                  setShowReviewsDrawer(true)
+                }}
+                total={totalReviews}
+              />
             </div>
           </div>
 
-          <ReviewsList onRowClick={onReviewRowClick} reviews={reviews} reviewsPerPage={10} />
+          <ReviewsList
+            onRowClick={(review) => {
+              setActiveReview(review)
+              setShowDetailsDrawer(true)
+            }}
+            reviews={rawReviews}
+            reviewsPerPage={10}
+          />
         </div>
       )}
 
@@ -73,7 +92,13 @@ export const App = () => {
       ) : null}
 
       {showReviewsDrawer ? (
-        <ReviewsDrawer onClose={() => setShowReviewsDrawer(false)} reviews={reviews} />
+        <ReviewsDrawer
+          onClose={() => {
+            resetFilteredReviews()
+            setShowReviewsDrawer(false)
+          }}
+          reviews={filteredReviews}
+        />
       ) : null}
     </Layout>
   )
