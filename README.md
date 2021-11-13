@@ -4,9 +4,9 @@ Reviews is an application to allow businesses to manage the responses and opinio
 
 ## Motivation
 
-In this day in age, the most valuable resource that one can collect is data. The motivation behind this application was make an easy and accessible way for
+In this day in age, the most valuable resource that one can collect is data. The motivation behind this application was to make an accessible way for
 businesses to take advantage of the data that has been generated from the reviews of their clientele. This goal is accomplished through creating
-a user interface that is easily consumable to the human eye through the use of data visualizations and clear data data exposure.
+a user interface that is easily consumable through the use of data visualizations and clear data data exposure.
 
 ## Setup and Installation
 
