@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 
-import { Drawer } from './Drawer'
+import { Drawer } from '../Drawer'
 
 const defaultProps = {
   onClose: jest.fn(),
