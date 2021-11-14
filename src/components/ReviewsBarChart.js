@@ -115,7 +115,7 @@ export const ReviewsBarChart = ({ data, height, onBarClick }) => {
                 onKeyPress={(e) => {
                   e.preventDefault()
                   if (e.code === 'Enter' || e.code === 'Space') {
-                    onBarClick()
+                    onBarClick(datum.x)
                   }
                 }}
                 role={onBarClick ? 'button' : null}
